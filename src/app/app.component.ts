@@ -46,7 +46,7 @@ export class AppComponent {
     this.start = false;
   }
 
-  public async set_name(user: any) {
+  public async set_name(user: any) { 
     await this.delay(500);
     this.chat.push({
       'message': 'Well, ' + user.value + ', what you want?',

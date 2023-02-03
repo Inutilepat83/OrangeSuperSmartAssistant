@@ -36,6 +36,8 @@ jobs:
     - name: Clean Playwright
       run : npm rm playwright
     - name: Install Playwright
+      run : npx playwright install       
+    - name: Install Playwright Tests
       run : npm install @playwright/test -D
     - name: Build production build
       run: npm run build

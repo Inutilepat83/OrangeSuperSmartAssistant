@@ -86,7 +86,7 @@ export class AppComponent {
   }
 
   public getResponse(user: any): Promise<CognitiveService> {
-    return fetch('http://127.0.0.1:5000/predict?text=' + user.value)
+    return fetch('http://127.0.0.1:4201/predict?text=' + user.value)
             .then(res => res.json())
             .then(res => {
                     return res as CognitiveService

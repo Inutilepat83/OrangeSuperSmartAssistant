@@ -4,9 +4,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --port 4201",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "playwright_test": "playwright test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "swa:start": "swa start app",
+    "swa:login": "swa deploy app",
+    "swa:deploy": "swa login"
   },
   "private": true,
   "dependencies": {

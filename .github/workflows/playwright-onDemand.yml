@@ -37,6 +37,8 @@ jobs:
       run : npm rm playwright
     - name: Install Playwright
       run : npx playwright install       
+    - name: Install Playwright Deps
+      run : sudo npx playwright install-deps         
     - name: Install Playwright Tests
       run : npm install @playwright/test -D
     - name: Build production build

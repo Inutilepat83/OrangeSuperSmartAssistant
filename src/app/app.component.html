@@ -1,0 +1,56 @@
+<section style="background-color: #eee;">
+  <div class="container py-5">
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-8">
+
+        <div class="card" id="chat1" style="border-radius: 15px;">
+          <div
+            class="card-header d-flex justify-content-between align-items-center p-3 bg-dark text-white border-bottom-0"
+            style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <i class="fas fa-angle-left"></i>
+            <p class="mb-0 fw-bold">Chatbot</p>
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="card-body">
+            <div *ngFor="let message of chat">
+              <div class="d-flex flex-row justify-content-start mb-4" *ngIf="message.agent=='bot'">
+                <img src="https://user-images.githubusercontent.com/56659549/173120825-dd61d903-e53d-4c56-a9ff-e6e008f47f3e.png"
+                  alt="avatar 1" style="width: 50px; height: 100%;">
+                <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(0, 0, 0, 0.2);">
+                  <p class="small mb-0">
+                    {{message.message}}
+                  </p>
+                </div>
+              </div>
+
+              <div class="d-flex flex-row justify-content-end mb-4"  *ngIf="message.agent=='user'">
+                <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                  <p class="small mb-0">
+                    {{message.message}}
+                  </p>
+                </div>
+                <img src="https://user-images.githubusercontent.com/56659549/173120881-73c5b043-0137-47cb-8913-96e1d1c64609.png"
+                  alt="avatar 1" style="width: 50px; height: 100%;">
+              </div>
+            </div>
+
+            <div class="form-outline">
+              <input 
+                type='text' 
+                name="user"
+                class="form-control" 
+                id="textAreaExample" 
+                rows="4"
+                (keydown.enter)="user_add_message(user)"
+                placeholder="Type your message"
+                #user
+              />
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

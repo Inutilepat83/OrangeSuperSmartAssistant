@@ -22,7 +22,7 @@ jobs:
   test:
     # Runs on an ubuntu runner
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
@@ -60,5 +60,7 @@ jobs:
   storeReports:
     name: Store reports
     if: ${{ always() }}
-    needs: test
-    runs-on: ubuntu
+    uses: actions/upload-artifact@v2
+    with: 
+      name: onDemand
+      path: ./web_app/pw-report/

@@ -9,7 +9,7 @@ on:
   push:
     branches: [ "web_app" ]
   pull_request:
-    branches: [ "web_apps" ]
+    branches: [ "web_app" ]
   schedule: 
     # nightly
     - cron: '0 0 * * *'

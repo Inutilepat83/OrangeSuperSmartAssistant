@@ -29,24 +29,24 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
     - name: Define npm location
-      run: npm --prefix /web_app
+      run: npm --prefix ./web_app
     - name: Install dependencies
-      run: npm ci
+      run: npm ci --prefix ./web_app
     - name: Clean Playwright
-      run : npm rm playwright
+      run : npm rm playwright --prefix ./web_app
     - name: Install Playwright
-      run : npx playwright install       
+      run : npx playwright install --prefix ./web_app      
     - name: Install Playwright Deps
-      run : npx playwright install-deps         
+      run : npx playwright install-deps --prefix ./web_app        
     - name: Install Playwright Tests
-      run : npm install @playwright/test -D
+      run : npm install @playwright/test -D --prefix ./web_app
     - name: Build production build
-      run: npm run build
+      run: npm run build --prefix ./web_app
     - name: Run playwright tests
-      run: npm run playwright_test
+      run: npm run playwright_test --prefix ./web_app
     - name: Get current date
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"

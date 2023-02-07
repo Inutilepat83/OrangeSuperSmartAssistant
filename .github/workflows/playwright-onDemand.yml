@@ -20,40 +20,39 @@ jobs:
   test:
     # Runs on an ubuntu runner
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-    - name: Install dependencies
-      run: npm ci --prefix ./web_app
-    - name: Clean Playwright
-      run : npm rm playwright --prefix ./web_app
-    - name: Install Playwright
-      run : npx playwright install --prefix ./web_app      
-    - name: Install Playwright Deps
-      run : npx playwright install-deps --prefix ./web_app        
-    - name: Install Playwright Tests
-      run : npm install @playwright/test -D --prefix ./web_app
-    - name: Build production build
-      run: npm run build --prefix ./web_app
-    - name: Run playwright tests
-      run: npm run playwright_test --prefix ./web_app
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-    - name: Upload HTML report as Artifact
-      uses: actions/upload-artifact@v2
-      env:
-          TAG_NAME: test-report-${{ steps.date.outputs.date }}
-      if: always()
-      with: 
-        name: onDemand
-        path: ./web_app/pw-report/
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Install dependencies
+        run: npm ci --prefix ./web_app
+      - name: Clean Playwright
+        run : npm rm playwright --prefix ./web_app
+      - name: Install Playwright
+        run : npx playwright install --prefix ./web_app      
+      - name: Install Playwright Deps
+        run : npx playwright install-deps --prefix ./web_app        
+      - name: Install Playwright Tests
+        run : npm install @playwright/test -D --prefix ./web_app
+      - name: Build production build
+        run: npm run build --prefix ./web_app
+      - name: Run playwright tests
+        run: npm run playwright_test --prefix ./web_app
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: Upload HTML report as Artifact
+        uses: actions/upload-artifact@v2
+        env:
+            TAG_NAME: test-report-${{ steps.date.outputs.date }}
+        if: always()
+        with: 
+          name: onDemand
+          path: ./web_app/pw-report/
 
   storeReports:
     name: Store reports

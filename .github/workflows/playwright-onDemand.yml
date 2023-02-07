@@ -55,8 +55,8 @@ jobs:
         name: onDemand
         path: ./web_app/pw-report/
 
-    storeReports:
-      name: Store reports
-      if: ${{ always() }}
-      needs: test
-      runs-on: ubuntu
+  storeReports:
+    name: Store reports
+    if: ${{ always() }}
+    needs: test
+    runs-on: ubuntu

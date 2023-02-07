@@ -1,4 +1,3 @@
-
 # This is a basic workflow to help you get started with Actions
 
 name: Playwright tests
@@ -29,10 +28,8 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
-    - name: Define npm location
-      run: npm --prefix ./web_app
     - name: Install dependencies
       run: npm ci --prefix ./web_app
     - name: Clean Playwright
@@ -57,46 +54,10 @@ jobs:
       if: always()
       with: 
         name: onDemand
-        path: pw-report/
+        path: ./web_app/pw-report/
 
   storeReports:
     name: Store reports
     if: ${{ always() }}
     needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Download all workflow run artifacts
-      uses: actions/download-artifact@v3
-      id: download
-    - name: Publish to external repo
-      if: always()
-      uses: peaceiris/actions-gh-pages@v3.7.3
-      with:
-        external_repository: mspnp/intern-js-pipeline
-        publish_branch: gh-pages
-        personal_token: ${{ secrets.PAT_TOKEN }}
-        publish_dir: ${{steps.download.outputs.download-path}}
-        destination_dir: test-reports/${{ github.repository }}
-        keep_files: true
-        user_name: "github-actions[bot]"
-        user_email: "github-actions[bot]@users.noreply.github.com"
-
-  notify-dashboard:
-    name: Notify Dashboard
-    if: ${{ always() }}
-    needs: [test, storeReports]
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Notify docusaurus repo
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-        run: |
-          gh api repos/mspnp/intern-js-pipeline/dispatches \
-              --raw-field event_type=rebuild-site
+    runs-on: ubuntu

@@ -5,7 +5,7 @@ name: Playwright tests
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events but only for the "web_app" branch
   push:
     branches: [ "web_app" ]
   pull_request:
@@ -31,6 +31,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
+    - name: Define npm location
+      run: npm --prefix /web_app
     - name: Install dependencies
       run: npm ci
     - name: Clean Playwright

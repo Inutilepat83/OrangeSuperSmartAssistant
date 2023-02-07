@@ -5,7 +5,7 @@
       "context": "http://localhost:4201",
       "run": "npm start",
       "apiLocation": "",
-      "outputLocation": "dist/angular-basic",
+      "outputLocation": "dist/OSSA",
       "devserverTimeout": 10000,
       "open": "true"
     }

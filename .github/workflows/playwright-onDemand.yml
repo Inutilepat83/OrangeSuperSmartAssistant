@@ -1,5 +1,4 @@
 # This is a basic workflow to help you get started with Actions
-
 name: Playwright tests
 
 # Controls when the workflow will run
@@ -56,8 +55,8 @@ jobs:
         name: onDemand
         path: ./web_app/pw-report/
 
-  storeReports:
-    name: Store reports
-    if: ${{ always() }}
-    needs: test
-    runs-on: ubuntu
+    storeReports:
+      name: Store reports
+      if: ${{ always() }}
+      needs: test
+      runs-on: ubuntu
